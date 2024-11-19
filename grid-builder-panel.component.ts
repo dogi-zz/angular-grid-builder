@@ -205,9 +205,9 @@ export class GridBuilderPanelItemComponent {
       <div class="grid-builder-content">
         <ng-template *ngTemplateOutlet="root.widgetTypes[definition.cellType].template; context: {$implicit: {'foo': 13}, config: definition.config, edit: editMode, data: root.data, configChange: configChange }"></ng-template>
       </div>
-      <div class="grid-builder-edit-panel" *ngIf="editMode">
+      <div class="grid-builder-edit-panel" *ngIf="editMode" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false">
         <div class="grid-builder-icon"
-             [innerHTML]="root.widgetTypes[definition.cellType].icon" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+             [innerHTML]="root.widgetTypes[definition.cellType].icon"></div>
         <div class="grid-builder-buttons">
           <div class="grid-builder-button delete" (mouseenter)="hoverDelete = true" (mouseleave)="hoverDelete = false" [innerHTML]="root.buttonDelete" (click)="delete()"></div>
         </div>
@@ -269,32 +269,27 @@ export class GridBuilderPanelCellComponent {
         </div>
       </div>
 
-      <div class="grid-builder-edit-panel" *ngIf="editMode">
+      <div class="grid-builder-edit-panel" *ngIf="editMode" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false">
         <div class="grid-builder-icon"
-             [innerHTML]="root.buttonRows" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+             [innerHTML]="root.buttonRows"></div>
 
 
         <div class="grid-builder-buttons">
-          <div class="grid-builder-button primary" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false" [innerHTML]="root.buttonAdd" (click)="add()"></div>
+          <div class="grid-builder-button primary" [innerHTML]="root.buttonAdd" (click)="add()"></div>
 
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'left'" [class.secondary]="definition.align !== 'left'" (click)="setAlign('left')" [innerHTML]="root.buttonAlignLeft"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'left'" [class.secondary]="definition.align !== 'left'" (click)="setAlign('left')" [innerHTML]="root.buttonAlignLeft"></div>
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'center'" [class.secondary]="definition.align !== 'center'" (click)="setAlign('center')" [innerHTML]="root.buttonAlignCenter"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'center'" [class.secondary]="definition.align !== 'center'" (click)="setAlign('center')" [innerHTML]="root.buttonAlignCenter"></div>
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'right'" [class.secondary]="definition.align !== 'right'" (click)="setAlign('right')" [innerHTML]="root.buttonAlignRight"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'right'" [class.secondary]="definition.align !== 'right'" (click)="setAlign('right')" [innerHTML]="root.buttonAlignRight"></div>
 
           <div class="grid-builder-button"
-               [class.primary]="definition.fullSize" [class.secondary]="!definition.fullSize" (click)="toggleFullSize()" [innerHTML]="root.buttonRowsFullSize"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.fullSize" [class.secondary]="!definition.fullSize" (click)="toggleFullSize()" [innerHTML]="root.buttonRowsFullSize"></div>
 
           <div class="grid-builder-button"
                *ngFor="let rowStyle of root.rowStyles"
-               [class.primary]="definition.extraStyle === rowStyle.style" [class.secondary]="definition.extraStyle !== rowStyle.style" (click)="setRowsStyle(rowStyle.style)" [innerHTML]="rowStyle.icon"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.extraStyle === rowStyle.style" [class.secondary]="definition.extraStyle !== rowStyle.style" (click)="setRowsStyle(rowStyle.style)" [innerHTML]="rowStyle.icon"></div>
 
           <div class="grid-builder-button delete" (mouseenter)="hoverDelete = true" (mouseleave)="hoverDelete = false" [innerHTML]="root.buttonDelete" (click)="delete()"></div>
         </div>
@@ -365,29 +360,24 @@ export class GridBuilderPanelRowsComponent {
          [ngClass]="definition.extraStyle ?('style-'+definition.extraStyle):null"
     >
 
-      <div class="grid-builder-edit-panel" *ngIf="editMode">
+      <div class="grid-builder-edit-panel" *ngIf="editMode" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false">
         <div class="grid-builder-icon"
-             [innerHTML]="root.buttonColumns" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+             [innerHTML]="root.buttonColumns"></div>
 
         <div class="grid-builder-buttons">
-          <div class="grid-builder-button primary" (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false" [innerHTML]="root.buttonAdd" (click)="add()"></div>
+          <div class="grid-builder-button primary" [innerHTML]="root.buttonAdd" (click)="add()"></div>
 
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'top'" [class.secondary]="definition.align !== 'top'" (click)="setAlign('top')" [innerHTML]="root.buttonAlignTop"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'top'" [class.secondary]="definition.align !== 'top'" (click)="setAlign('top')" [innerHTML]="root.buttonAlignTop"></div>
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'middle'" [class.secondary]="definition.align !== 'middle'" (click)="setAlign('middle')" [innerHTML]="root.buttonAlignMiddle"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'middle'" [class.secondary]="definition.align !== 'middle'" (click)="setAlign('middle')" [innerHTML]="root.buttonAlignMiddle"></div>
           <div class="grid-builder-button"
-               [class.primary]="definition.align === 'bottom'" [class.secondary]="definition.align !== 'bottom'" (click)="setAlign('bottom')" [innerHTML]="root.buttonAlignBottom"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.align === 'bottom'" [class.secondary]="definition.align !== 'bottom'" (click)="setAlign('bottom')" [innerHTML]="root.buttonAlignBottom"></div>
           <div class="grid-builder-button"
-               [class.primary]="definition.fullSize" [class.secondary]="!definition.fullSize" (click)="toggleFullSize()" [innerHTML]="root.buttonColumnsFullSize"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.fullSize" [class.secondary]="!definition.fullSize" (click)="toggleFullSize()" [innerHTML]="root.buttonColumnsFullSize"></div>
           <div class="grid-builder-button"
                *ngFor="let columnStyle of root.columnStyles"
-               [class.primary]="definition.extraStyle === columnStyle.style" [class.secondary]="definition.extraStyle !== columnStyle.style" (click)="setRowsStyle(columnStyle.style)" [innerHTML]="columnStyle.icon"
-               (mouseenter)="hoverMark = true" (mouseleave)="hoverMark = false"></div>
+               [class.primary]="definition.extraStyle === columnStyle.style" [class.secondary]="definition.extraStyle !== columnStyle.style" (click)="setRowsStyle(columnStyle.style)" [innerHTML]="columnStyle.icon"></div>
 
           <div class="grid-builder-button delete" (mouseenter)="hoverDelete = true" (mouseleave)="hoverDelete = false" [innerHTML]="root.buttonDelete" (click)="delete()"></div>
         </div>

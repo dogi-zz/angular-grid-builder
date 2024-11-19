@@ -41,6 +41,7 @@
   .grid-builder-icon-base();
   background: @grid-builder-edit-icon-bg;
   color: @grid-builder-edit-icon-fg;
+  align-self: stretch;
 }
 
 .grid-builder-button() {
@@ -66,8 +67,6 @@
   color: @grid-builder-edit-button-delete-bg;
 }
 
-.grid-builder-edit-panel() {
-}
 
 .grid-builder-rows() {
 }
@@ -92,6 +91,59 @@
   //}
 }
 
+.grid-builder-edit-panel-position(){
+  position: relative;
+  .grid-builder-buttons {
+    position: absolute;
+    background: white;
+    border: 1px solid @grid-builder-edit-border-color;
+    left: 5px;
+    top: 20px;
+    z-index: 10;
+  }
+}
+
+.grid-builder-edit-panel-base(){
+  .grid-builder-edit-panel-position();
+  display: flex;
+  justify-content: flex-start;
+
+  .grid-builder-buttons {
+    display: flex;
+    display: none;
+    flex: 1;
+    justify-content: flex-start;
+  }
+  &:hover{
+    .grid-builder-buttons {
+      display: flex;
+    }
+  }
+}
+
+.grid-builder-edit-panel() {
+}
+
+.grid-builder-edit-panel-vertical(){
+  .grid-builder-edit-panel-base();
+  border-left: @grid-builder-edit-border-heavy;
+  flex-direction: column;
+  .grid-builder-buttons {
+    flex-direction: column;
+  }
+  .grid-builder-edit-panel();
+}
+.grid-builder-edit-panel-horizontal(){
+  .grid-builder-edit-panel-base();
+  border-bottom: @grid-builder-edit-border-heavy;
+  flex-direction: row;
+  .grid-builder-buttons {
+    flex-direction: row;
+  }
+  .grid-builder-edit-panel();
+}
+
+
 .grid-builder() {
 
 
@@ -103,21 +155,7 @@
   }
 
   .grid-builder-edit-panel-mixin(@flex-direction){
-    display: flex;
-    flex-direction: @flex-direction;
-    justify-content: flex-start;
 
-    .grid-builder-buttons {
-      display: none;
-      flex: 1;
-      flex-direction: @flex-direction;
-      justify-content: flex-start;
-    }
-    &:hover{
-      .grid-builder-buttons {
-        display: flex;
-      }
-    }
   }
 
 
@@ -195,8 +233,7 @@
       }
 
       > .grid-builder-edit-panel {
-        border-left: @grid-builder-edit-border-heavy;
-        .grid-builder-edit-panel-mixin(column);
+        .grid-builder-edit-panel-vertical();
       }
 
     }
@@ -264,8 +301,7 @@
     }
 
     > .grid-builder-edit-panel {
-      border-left: @grid-builder-edit-border-heavy;
-      .grid-builder-edit-panel-mixin(column);
+      .grid-builder-edit-panel-vertical();
     }
 
   }
@@ -332,8 +368,7 @@
     }
 
     > .grid-builder-edit-panel {
-      border-bottom: @grid-builder-edit-border-heavy;
-      .grid-builder-edit-panel-mixin(row);
+      .grid-builder-edit-panel-horizontal();
     }
 
   }
